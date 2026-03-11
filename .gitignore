@@ -1,0 +1,56 @@
+# Godot 4+ cache (fully regenerated on project open)
+.godot/
+.nomedia
+
+# Godot 3.x cache directory (backward compat)
+.import/
+
+# NOTE: *.import sidecar files SHOULD be committed!
+# They contain import metadata (filter, compression settings) needed by collaborators.
+# Only the .import/ DIRECTORY (Godot 3.x cache) is ignored above.
+
+# Export credentials (NEVER commit secrets)
+export_credentials.cfg
+
+# Temporary files
+*.tmp
+*.log
+
+# Imported translations (auto-generated from CSV)
+*.translation
+
+# Mono/C# ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+
+# Secrets
+.env
+*.key
+
+# Build outputs
+builds/
+export/
+
+# Claude Code (local settings)
+.claude/settings.local.json
+
+# MCP (contains local machine paths)
+.mcp.json
+
+# Raw downloads (backup, not needed in repo)
+downloads/
+
+# Skill eval workspaces (temporary artifacts)
+*-workspace/
