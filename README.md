@@ -44,14 +44,14 @@ Edite `.mcp.json` com seus caminhos locais:
 - `<PATH_TO_GODOT_EXECUTABLE>` → caminho do executável do Godot
 
 ### 3. Crie um projeto Godot
-- Abra o Godot → New Project
-- Siga as instruções em `templates/<gênero>/README.md`
+- Abra o Godot → New Project → crie dentro da pasta `game/`
+- Siga as instruções em `templates/<gênero>/README.md` para configurar as settings
 
 ### 4. Comece a construir!
 ```bash
 claude
 ```
-Claude vai detectar as skills automaticamente e guiar o processo.
+Claude vai detectar as skills automaticamente e guiar o processo. O projeto do jogo fica na pasta `game/`.
 
 ## O que está incluso
 

@@ -31,10 +31,15 @@ Each has a README with Godot project setup instructions.
 Pre-downloaded free assets in `assets/`, organized by genre.
 Run `python tools/analyze_sprites.py <path> --recursive` before writing animation code.
 
+## Project Folder
+
+The Godot project lives in `game/`. Create the project in the Godot editor inside this folder.
+All scenes, scripts, and assets for the game go here.
+
 ## Key Rules
 
-- Create the Godot project in the editor (don't write project.godot manually)
-- Run `godot --headless --import` after adding new assets
+- Create the Godot project in the Godot editor inside `game/` (don't write project.godot manually)
+- Copy relevant assets from `assets/` to `game/assets/` and run `godot --headless --import`
 - Use Area2D for damage, never body-to-body collision
 - Set complex properties (Vector2, Color) in .tscn or _ready(), not via MCP
 - Delegate heavy work to subagents to preserve main context
