@@ -111,11 +111,8 @@ func _ready() -> void:
 	# Load textures based on variant
 	_load_textures()
 
-	# Apply boss scaling
-	if is_boss:
-		sprite.scale = Vector2(3, 3)
-	else:
-		sprite.scale = Vector2(2, 2)
+	# Apply boss scaling (2x for all — boss is visually the same sprite set)
+	sprite.scale = Vector2(2, 2)
 
 	# Set initial animation
 	_set_anim("idle")
@@ -291,7 +288,9 @@ func take_damage(amount: int, from_position: Vector2) -> void:
 		return
 
 	current_hp -= amount
+	AudioManager.play_sfx("hit")
 	if current_hp <= 0:
+		AudioManager.play_sfx("enemy_death")
 		_enter_death()
 	else:
 		_enter_hurt(from_position)

@@ -268,7 +268,9 @@ func take_damage(amount: int, from_position: Vector2) -> void:
 		return
 
 	current_hp -= amount
+	AudioManager.play_sfx("hit")
 	if current_hp <= 0:
+		AudioManager.play_sfx("enemy_death")
 		_enter_death()
 	else:
 		_enter_hurt(from_position)

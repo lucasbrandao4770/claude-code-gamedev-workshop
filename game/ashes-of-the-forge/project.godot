@@ -18,6 +18,7 @@ run/main_scene="res://scenes/world/vila.tscn"
 [autoload]
 
 GameManager="*res://scripts/autoloads/game_manager.gd"
+AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
 [display]
 

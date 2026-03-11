@@ -108,6 +108,9 @@ func _ready() -> void:
 	# Add hitbox to group for enemy detection
 	hitbox.add_to_group("player_hitbox")
 
+	# Set damage metadata so enemies can read it
+	hitbox.set_meta("damage", attack_damage)
+
 	# Add hurtbox to group so enemies can poll contact damage
 	hurtbox.add_to_group("player_hurtbox")
 
@@ -197,6 +200,7 @@ func _start_attack() -> void:
 	attack_timer = attack_duration
 	attack_cooldown_timer = attack_cooldown
 	velocity = Vector2.ZERO
+	AudioManager.play_sfx("attack")
 
 	# Enable hitbox
 	hitbox_shape.set_deferred("disabled", false)
@@ -214,7 +218,13 @@ func _end_attack() -> void:
 	_set_animation_state(State.IDLE)
 
 
+## Set to true for demo/testing — player takes no damage
+@export var god_mode: bool = false
+
+
 func take_damage(amount: int, from_position: Vector2) -> void:
+	if god_mode:
+		return
 	if _is_dead:
 		return
 	if invincibility_timer > 0.0:
@@ -230,6 +240,8 @@ func take_damage(amount: int, from_position: Vector2) -> void:
 		if current_hp <= 0:
 			_die()
 			return
+
+	AudioManager.play_sfx("player_hurt")
 
 	# Cancel attack if attacking
 	if current_state == State.ATTACK:

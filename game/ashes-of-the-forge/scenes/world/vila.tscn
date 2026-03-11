@@ -19,6 +19,7 @@ script = ExtResource("1_room")
 room_name = "Vila"
 room_size = Vector2(320, 180)
 player_spawn = Vector2(160, 90)
+music_track = "vila"
 
 [node name="Background" type="ColorRect" parent="."]
 offset_left = 0.0

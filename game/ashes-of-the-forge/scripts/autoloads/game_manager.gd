@@ -8,6 +8,7 @@ signal resources_changed(slime_cores: int, bone_shards: int)
 signal player_died
 signal player_level_changed(new_level: int)
 signal room_changed(room_name: String)
+signal boss_defeated
 
 # --- Constants ---
 const DEFAULT_HP: int = 6
@@ -24,6 +25,9 @@ var bone_shards: int = 0
 
 ## Player level (1-3)
 var player_level: int = 1
+
+## Boss state
+var is_boss_defeated: bool = false
 
 # --- Room Management ---
 var current_room_name: String = "Vila"
@@ -54,6 +58,7 @@ func add_resource(type: String, amount: int) -> void:
 		_:
 			push_warning("GameManager: Unknown resource type '%s'" % type)
 			return
+	AudioManager.play_sfx("pickup")
 	resources_changed.emit(slime_cores, bone_shards)
 
 
@@ -80,6 +85,24 @@ func set_room_name(room_name: String) -> void:
 
 func get_spawn_position() -> Vector2:
 	return _pending_spawn
+
+
+# --- Boss ---
+
+const VICTORY_SCENE_PATH: String = "res://scenes/ui/victory.tscn"
+
+func defeat_boss() -> void:
+	is_boss_defeated = true
+	boss_defeated.emit()
+	# Show victory screen after a brief delay
+	get_tree().create_timer(1.0).timeout.connect(_show_victory)
+
+
+func _show_victory() -> void:
+	var victory_scene: PackedScene = load(VICTORY_SCENE_PATH)
+	if victory_scene:
+		var victory_instance: Node = victory_scene.instantiate()
+		get_tree().current_scene.add_child(victory_instance)
 
 
 # --- Respawn ---
